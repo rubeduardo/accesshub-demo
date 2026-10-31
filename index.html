@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AccessHub Demo — demonstração fictícia de gestão associativa e identificação digital.">
+  <meta name="theme-color" content="#101827">
+  <title>AccessHub — Gestão associativa</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+  <div class="demo-banner">AMBIENTE DE DEMONSTRAÇÃO · DADOS FICTÍCIOS · NÃO UTILIZE PARA IDENTIFICAÇÃO REAL</div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="AccessHub início"><span class="brand-mark">A</span><span>access<span>hub</span><small>GESTÃO INCLUSIVA</small></span></a>
+      <div class="side-label">MENU PRINCIPAL</div>
+      <nav aria-label="Navegação principal">
+        <button class="nav-link active" data-view="dashboard"><span>▦</span> Visão geral</button>
+        <button class="nav-link" data-view="members"><span>♙</span> Associados</button>
+        <button class="nav-link" data-view="cards"><span>▤</span> Carteirinhas</button>
+        <button class="nav-link" data-view="validate"><span>⌕</span> Validar carteirinha</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="demo-note"><strong>Modo demonstração</strong><p>Os dados ficam salvos somente neste navegador.</p></div>
+        <button class="nav-link" data-view="about"><span>ⓘ</span> Sobre o projeto</button>
+      </div>
+    </aside>
+
+    <main id="main" class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menu">☰</button>
+        <div><div class="eyebrow">ADEMOC · PROJETO DEMONSTRATIVO</div><div class="top-title" id="pageTitle">Visão geral</div></div>
+        <div class="top-actions">
+          <button class="icon-button" id="fontDown" aria-label="Diminuir fonte">A−</button>
+          <button class="icon-button" id="fontUp" aria-label="Aumentar fonte">A+</button>
+          <button class="icon-button" id="contrastToggle" aria-label="Alternar alto contraste">◐</button>
+          <span class="avatar" aria-label="Usuário demonstrativo">RE</span>
+        </div>
+      </header>
+
+      <section class="view active" id="view-dashboard">
+        <div class="welcome-row"><div><p class="eyebrow">PAINEL DE CONTROLE</p><h1>Olá! Bem-vindo ao AccessHub.</h1><p class="muted">Acompanhe os registros e a emissão de carteirinhas demonstrativas.</p></div><button class="btn primary" data-action="new-member">＋ Novo associado</button></div>
+        <div class="notice"><strong>ⓘ Dados de exemplo:</strong> todos os nomes, números e registros desta aplicação são fictícios e não representam associados reais da ADEMOC.</div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon purple">♙</div><div class="stat-label">Associados cadastrados</div><div class="stat-value" id="statTotal">—</div><div class="stat-foot">Registros nesta demonstração</div></article>
+          <article class="stat-card"><div class="stat-icon green">✓</div><div class="stat-label">Cadastros ativos</div><div class="stat-value" id="statActive">—</div><div class="stat-foot">Situação ativa</div></article>
+          <article class="stat-card"><div class="stat-icon blue">▤</div><div class="stat-label">Carteirinhas emitidas</div><div class="stat-value" id="statCards">—</div><div class="stat-foot">Com número de identificação</div></article>
+          <article class="stat-card"><div class="stat-icon amber">◷</div><div class="stat-label">Cadastros inativos</div><div class="stat-value" id="statInactive">—</div><div class="stat-foot">Situação inativa</div></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel"><div class="panel-head"><div><h2>Associados recentes</h2><p class="muted">Últimos registros da demonstração</p></div><button class="text-button" data-view="members">Ver todos →</button></div><div class="table-wrap"><table><thead><tr><th>Associado</th><th>Nº de identificação</th><th>Situação</th></tr></thead><tbody id="recentMembers"></tbody></table></div></article>
+          <article class="panel quick-panel"><h2>Acesso rápido</h2><p class="muted">Atalhos para as principais funções.</p><button class="quick-action" data-action="new-member"><span>＋</span><span><b>Cadastrar associado</b><small>Adicionar um novo registro fictício</small></span><i>→</i></button><button class="quick-action" data-view="cards"><span>▤</span><span><b>Emitir carteirinha</b><small>Gerar identificação demonstrativa</small></span><i>→</i></button><button class="quick-action" data-view="validate"><span>⌕</span><span><b>Validar identificação</b><small>Consultar um número de registro</small></span><i>→</i></button></article>
+        </div>
+      </section>
+
+      <section class="view" id="view-members">
+        <div class="section-heading"><div><p class="eyebrow">CADASTRO E CONSULTA</p><h1>Associados</h1><p class="muted">Gerencie registros fictícios da demonstração.</p></div><button class="btn primary" data-action="new-member">＋ Novo associado</button></div>
+        <div class="panel"><div class="toolbar"><input id="memberSearch" class="search" type="search" placeholder="Buscar por nome ou identificação..." aria-label="Buscar associados"><select id="statusFilter" aria-label="Filtrar por situação"><option value="all">Todas as situações</option><option value="Ativo">Ativos</option><option value="Inativo">Inativos</option></select><button class="btn secondary" id="exportCsv">↓ Exportar CSV</button></div><div class="table-wrap"><table><thead><tr><th>Nome</th><th>Identificação</th><th>Contato demonstrativo</th><th>Situação</th><th>Ações</th></tr></thead><tbody id="membersTable"></tbody></table></div><div class="table-foot" id="memberCount"></div></div>
+      </section>
+
+      <section class="view" id="view-cards">
+        <div class="section-heading"><div><p class="eyebrow">IDENTIFICAÇÃO DIGITAL</p><h1>Carteirinhas</h1><p class="muted">Emita e visualize carteirinhas fictícias.</p></div></div>
+        <div class="content-grid cards-layout"><article class="panel"><h2>Selecionar associado</h2><p class="muted">Escolha um cadastro para visualizar sua carteirinha.</p><label for="cardMemberSelect">Associado</label><select id="cardMemberSelect"></select><div class="card-preview" id="cardPreview"><div class="card-brand"><span class="brand-mark">A</span><span>ACCESSHUB<small>IDENTIFICAÇÃO DEMONSTRATIVA</small></span></div><div class="card-person"><div class="card-avatar">?</div><div><strong>Selecione um associado</strong><span>Registro fictício</span></div></div><div class="card-number">Nº <b>—</b></div><div class="card-bottom"><span>DOCUMENTO SEM VALIDADE OFICIAL</span><div id="cardQr" class="qr-placeholder">QR</div></div></div><button class="btn primary full" id="printCard">Imprimir carteirinha</button><p class="helper">A carteirinha é apenas uma representação visual. Não comprova vínculo associativo nem concede direitos.</p></article><article class="panel"><h2>Como funciona</h2><ol class="steps"><li><b>Selecione um cadastro</b><span>Use os dados fictícios disponíveis.</span></li><li><b>Visualize a identificação</b><span>O número único é associado ao registro.</span></li><li><b>Valide o número</b><span>Consulte a situação na área de validação.</span></li></ol><div class="notice">O QR Code contém somente um identificador demonstrativo, sem dados pessoais.</div></article></div>
+      </section>
+
+      <section class="view" id="view-validate">
+        <div class="section-heading"><div><p class="eyebrow">CONSULTA DE IDENTIFICAÇÃO</p><h1>Validar carteirinha</h1><p class="muted">Verifique se um número existe na base fictícia.</p></div></div>
+        <div class="panel validation-panel"><div class="validation-icon">⌕</div><h2>Consulta de identificação</h2><p class="muted">Informe o número impresso na carteirinha demonstrativa.</p><form id="validateForm" class="validate-form"><input id="validateId" placeholder="Ex.: AH-2026-0001" aria-label="Número de identificação" required><button class="btn primary">Validar</button></form><div id="validationResult" aria-live="polite"></div><p class="helper">Esta consulta é local e ilustrativa. Não substitui qualquer mecanismo oficial de validação.</p></div>
+      </section>
+
+      <section class="view" id="view-about">
+        <div class="section-heading"><div><p class="eyebrow">CONTEXTO E TRANSPARÊNCIA</p><h1>Sobre o AccessHub</h1><p class="muted">Tecnologia aplicada à organização e à inclusão.</p></div></div>
+        <div class="panel about-panel"><span class="brand-mark large">A</span><h2>Uma ideia que nasceu de uma necessidade real.</h2><p>O AccessHub é um projeto idealizado por Rubens Eduardo a partir de uma iniciativa de organização digital de cadastros e carteirinhas associativas, tendo como contexto a ADEMOC — Associação das Pessoas com Deficiência de Montes Claros.</p><p>A implementação original foi concluída utilizando planilhas e banco de dados local, com funcionalidades de cadastro, controle, numeração única, emissão e consulta de carteirinhas.</p><p>Esta versão web é uma demonstração independente, criada para apresentar o conceito de forma interativa. Ela não é o sistema operacional da ADEMOC, não contém seus registros e não possui integração com a associação.</p><div class="notice"><b>Privacidade por design:</b> esta demonstração utiliza exclusivamente dados fictícios armazenados no navegador. Não insira dados pessoais reais.</div><h3>Idealização e desenvolvimento</h3><p><b>Rubens Eduardo</b><br><span class="muted">AI Builder · Automação · Tecnologia e inclusão digital</span></p><a class="text-button" href="https://github.com/rubeduardo" target="_blank" rel="noopener">GitHub do desenvolvedor ↗</a></div>
+      </section>
+
+      <footer>ACCESSHUB DEMO · PROJETO INDEPENDENTE · DADOS FICTÍCIOS · <span id="year"></span></footer>
+    </main>
+  </div>
+
+  <dialog id="memberDialog"><form id="memberForm" method="dialog"><div class="dialog-head"><div><p class="eyebrow">NOVO REGISTRO</p><h2>Cadastrar associado</h2></div><button type="button" class="close-button" id="closeDialog" aria-label="Fechar">×</button></div><label for="memberName">Nome fictício *</label><input id="memberName" required maxlength="80" placeholder="Ex.: Alex Santos"><label for="memberEmail">E-mail demonstrativo</label><input id="memberEmail" type="email" placeholder="alex@example.test"><label for="memberPhone">Telefone demonstrativo</label><input id="memberPhone" placeholder="(00) 00000-0000"><label for="memberStatus">Situação</label><select id="memberStatus"><option>Ativo</option><option>Inativo</option></select><p class="helper">Não utilize dados reais. O cadastro será salvo apenas neste navegador.</p><div class="dialog-actions"><button type="button" class="btn secondary" id="cancelDialog">Cancelar</button><button class="btn primary" type="submit">Salvar cadastro</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
