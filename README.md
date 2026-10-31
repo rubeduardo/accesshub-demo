@@ -2,7 +2,7 @@
 
 Demonstração web independente de gestão associativa e identificação digital, idealizada por Rubens Eduardo.
 
-**Atenção:** este projeto é uma demonstração. Todos os registros são fictícios. Não é o sistema operacional da ADEMOC, não contém dados reais da associação e não deve ser utilizado para identificação oficial.
+**Atenção:** este projeto é uma demonstração. Todos os registros são fictícios. Não é o sistema operacional finalizado da ADEMOC, não contém dados reais da associação e não deve ser utilizado para identificação oficial. Todas as logomarcas e tags de identificação foram removidas. 
 
 ## Funcionalidades
 - Dashboard com indicadores calculados a partir dos registros locais.
